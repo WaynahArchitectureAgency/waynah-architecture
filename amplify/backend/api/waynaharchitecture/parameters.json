@@ -1,0 +1,12 @@
+{
+  "AppSyncApiName": "waynaharchitecture",
+  "DynamoDBBillingMode": "PAY_PER_REQUEST",
+  "DynamoDBEnableServerSideEncryption": false,
+  "AuthModeLastUpdated": "2022-05-08T15:48:33.764Z",
+  "AuthCognitoUserPoolId": {
+    "Fn::GetAtt": [
+      "authwaynaharchitecturee6fe42bc",
+      "Outputs.UserPoolId"
+    ]
+  }
+}

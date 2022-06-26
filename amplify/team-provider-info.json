@@ -1,0 +1,21 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-waynaharchitecture-dev-161829-authRole",
+      "UnauthRoleArn": "arn:aws:iam::333603836510:role/amplify-waynaharchitecture-dev-161829-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::333603836510:role/amplify-waynaharchitecture-dev-161829-authRole",
+      "Region": "eu-central-1",
+      "DeploymentBucketName": "amplify-waynaharchitecture-dev-161829-deployment",
+      "UnauthRoleName": "amplify-waynaharchitecture-dev-161829-unauthRole",
+      "StackName": "amplify-waynaharchitecture-dev-161829",
+      "StackId": "arn:aws:cloudformation:eu-central-1:333603836510:stack/amplify-waynaharchitecture-dev-161829/929e9df0-ce10-11ec-bdc4-0676f38afd6e",
+      "AmplifyAppId": "d3tdh8abteaweh"
+    },
+    "categories": {
+      "auth": {
+        "waynaharchitecturee6fe42bc": {},
+        "true": {}
+      }
+    }
+  }
+}

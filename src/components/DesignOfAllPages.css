@@ -1,0 +1,126 @@
+@media screen and (max-width: 600px) {
+  img {
+    min-width: 400px;
+    height: 400px;
+  }
+}
+
+.coverImage {
+    max-width: 500px;
+    max-height: 500px;
+    cursor: pointer;
+    box-shadow: 3px 3px 10px 6px rgba(0, 0, 0, 0.06);
+    opacity: 0.5;
+}
+
+.generalRow {
+    padding-top: 100px;
+    margin-left: 0px !important;
+    margin-right: 0px !important;
+    font-family: nocturne-serif, serif;
+    font-style: normal;
+    font-weight: 400;
+}
+
+.marginTop {
+    margin-top: 150px;
+}
+
+.theImages {
+    height: 350px;
+}
+
+.marginOfTitle {
+    margin-bottom: 30px;
+}
+
+.coverImage:hover {
+    opacity: 1;
+} 
+
+.texteLeft {
+    text-align: left;
+}
+
+/* .carousel {
+    max-height: 1000px !important;
+    padding-left: 28px;
+    padding-right: 28px;
+    background-color: black;
+    color: white;
+} */
+
+.dropdown-list {
+  margin-top: 50px;
+  width: 200px;
+  user-select: none;
+}
+
+.dropdown-btn-list {
+  width: 35px;
+  cursor: pointer;
+}
+
+.dropdown-content-list {
+  position: absolute;
+  margin-top: 5px;
+  background-color: #fff;
+  box-shadow: 3px 3px 10px 2px rgba(0, 0, 0, 0.06);
+  font-weight: 500;
+  width: 200px;
+}
+
+.dropdown-item-list {
+  padding: 10px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.dropdown-item-list:hover {
+  background-color: #f4f4f4;
+}
+
+.plusForNewphoto {
+  height: 25px;
+  width: 25px;
+  cursor: pointer;
+}
+
+.generalItem {
+  height: 400px;
+  border: 2px solid;
+  border-right: none;
+  border-left: none;
+  text-align: center;
+  margin-top: 5%;
+}
+
+.titleAndDate {
+  margin: 40px;
+}
+
+.theTwoButton {
+  margin-top: 100px;
+}
+
+.NewPhoto {
+  height: 100px;
+  width: 100px;
+  margin-top: 100px;
+  cursor: pointer;
+}
+
+.oneImage {
+  max-width: 600px;
+  max-height: 600px;
+}
+
+.imagesOfCarousel {
+  max-height: 300px;
+}
+
+.imagesOfCarouselss {
+  max-height: 100%;
+  max-width: 100%;
+  overflow: hidden;
+}

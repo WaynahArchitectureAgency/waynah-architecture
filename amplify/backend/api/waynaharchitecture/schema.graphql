@@ -1,0 +1,24 @@
+# This "input" configures a global authorization rule to enable public access to
+# all models in this schema. Learn more about authorization rules here: https://docs.amplify.aws/cli/graphql/authorization-rules
+input AMPLIFY { globalAuthRule: AuthRule = { allow: public } } # FOR TESTING ONLY!
+
+type Todo @model @searchable
+@auth(
+  rules: [
+    {allow: owner, ownerField: "email"},
+    {allow: public, operations: [read]}
+  ]
+){
+  id: ID!
+  title: String!
+  content: String!
+  email: String @index(name: "postsByEmail",
+  queryField: "postsByEmail")
+  coverImage: String
+  images: [String!]!
+  page: String
+  language: String
+  dateAndLocation: String
+  createdAt: AWSDateTime
+  updatedAt: AWSDateTime
+}

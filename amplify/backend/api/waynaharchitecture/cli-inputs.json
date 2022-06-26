@@ -1,0 +1,21 @@
+{
+  "version": 1,
+  "serviceConfiguration": {
+    "apiName": "waynaharchitecture",
+    "serviceName": "AppSync",
+    "gqlSchemaPath": "/Users/doukahevisrail/Documents/dev/website-architecture/waynah-architecture-agency/amplify/backend/api/waynaharchitecture/schema.graphql",
+    "defaultAuthType": {
+      "mode": "API_KEY",
+      "expirationTime": 365,
+      "apiKeyExpirationDate": "2023-05-08T15:48:28.204Z",
+      "keyDescription": "public api key"
+    },
+    "conflictResolution": {},
+    "additionalAuthTypes": [
+      {
+        "mode": "AMAZON_COGNITO_USER_POOLS",
+        "cognitoUserPoolId": "authwaynaharchitecturee6fe42bc"
+      }
+    ]
+  }
+}
