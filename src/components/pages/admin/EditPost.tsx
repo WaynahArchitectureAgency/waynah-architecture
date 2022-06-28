@@ -1,12 +1,14 @@
 import React, {useState, useEffect, useRef} from 'react'
 import { API, Storage } from "aws-amplify"
 import SimpleMdeReact from 'react-simplemde-editor'
-import "easymde/dist/easymde.min.css";
 import { getTodo } from '../../../graphql/queries';
 import { updateTodo } from '../../../graphql/mutations';
 import { PostType } from './CreatePost';
 import { v4 as uuid } from "uuid" 
-import AwesomeSlider from "react-awesome-slider";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Navigation } from "swiper";
+import "swiper/css";
+import "swiper/css/navigation";
 import "./Admin.css"
 
 type PostUpdatedType = {
@@ -135,19 +137,26 @@ const EditPost = ({id, setPostEdit}: {id:string, setPostEdit: any}) => {
     const showImages = () => {
         if(!imageList) return <></>
         if(imageList.length > 1) {
-            return  <AwesomeSlider animation="cubeAnimation" bullets={false} className="imagesOfCarouselCreateAndEdit">
-                        {imageList.map((theImages: any, index: number) => {
-                            if(typeof theImages !== "string") {
-                                const objectUrl = URL.createObjectURL(theImages)
-                                return <div data-src={objectUrl} key={index} style={{width: 500, height: 500}}/>
-                            } 
-                            return <div data-src={theImages} key={index} style={{width: 500, height: 500}}/>
-                        })}
-                    </AwesomeSlider>
-        } else {
+            const theImages =   <Swiper navigation={true} rewind={true} modules={[Navigation]} className="theCarousel">
+                                    {imageList.map((theImages: any, index: number) => {
+                                        console.log("lot of iamge")
+                                        if(typeof theImages !== "string") {
+                                            const objectUrl = URL.createObjectURL(theImages)
+                                            return <SwiperSlide><img src={objectUrl} alt='' key={index} className="swiperCarousel" /></SwiperSlide>
+                                        } 
+                                        return <SwiperSlide><img src={theImages} alt='' key={index} className="swiperCarousel" /></SwiperSlide>
+                                    })}
+                                </Swiper>
+            return theImages
+        }
+        if(imageList.length) {
+            console.log("one image")
+            console.log(imageList)
             return <img src={imageList[0]} className="covImage" alt=''/>
-        } 
+        }
     }
+
+    console.log(imageList)
 
   return post ? (
     <div className='container'>   
@@ -156,7 +165,7 @@ const EditPost = ({id, setPostEdit}: {id:string, setPostEdit: any}) => {
             <img src={localImage ? localImage : covImage} className="covImage" alt="" />
         )}
         {imageList && (
-            showImages()
+                showImages()
         )}
         <div className='pageAndLanguage'>
             <div className="dropdown-list">
@@ -202,10 +211,12 @@ const EditPost = ({id, setPostEdit}: {id:string, setPostEdit: any}) => {
         <SimpleMdeReact value={post.content} onChange={(value: string) => setPost({...post, content: value})}/>
         <input type="file" ref={fileInput} onChange={handleChange} style={{position: "absolute", height: 0, width: 0}}/>
         <input type="file" ref={imagesFileInput} onChange={handleChanges} style={{position: "absolute", height: 0, width: 0}}/>
-        <button onClick={updateCurrentPost} type="button" className="btn btn-success">Update Post</button> {" "}
-        <button onClick={uploadImage} type="button" className="btn btn-primary">Update Cover Image</button>{" "}
-        <button onClick={uploadImages} type="button" className="btn btn-info">Update Images</button>{" "}
-        <button onClick={() => setPost({...post, images: []})} type="button" className="btn btn-danger">Clear Images</button>
+        <div style={{marginBottom: "10px"}}>
+            <button onClick={updateCurrentPost} type="button" className="btn btn-success">Update Post</button> {" "}
+            <button onClick={uploadImage} type="button" className="btn btn-primary">Update Cover Image</button>{" "}
+            <button onClick={uploadImages} type="button" className="btn btn-info">Update Images</button>{" "}
+            <button onClick={() => setPost({...post, images: []})} type="button" className="btn btn-danger">Clear Images</button>
+        </div>
     </div>
   ) : <div>Loading...</div>
 }

@@ -12,8 +12,6 @@ export type CreateTodoInput = {
   page?: string | null,
   language?: string | null,
   dateAndLocation?: string | null,
-  createdAt?: string | null,
-  updatedAt?: string | null,
 };
 
 export type ModelTodoConditionInput = {
@@ -25,8 +23,6 @@ export type ModelTodoConditionInput = {
   page?: ModelStringInput | null,
   language?: ModelStringInput | null,
   dateAndLocation?: ModelStringInput | null,
-  createdAt?: ModelStringInput | null,
-  updatedAt?: ModelStringInput | null,
   and?: Array< ModelTodoConditionInput | null > | null,
   or?: Array< ModelTodoConditionInput | null > | null,
   not?: ModelTodoConditionInput | null,
@@ -83,8 +79,8 @@ export type Todo = {
   page?: string | null,
   language?: string | null,
   dateAndLocation?: string | null,
-  createdAt?: string | null,
-  updatedAt?: string | null,
+  createdAt: string,
+  updatedAt: string,
 };
 
 export type UpdateTodoInput = {
@@ -97,8 +93,6 @@ export type UpdateTodoInput = {
   page?: string | null,
   language?: string | null,
   dateAndLocation?: string | null,
-  createdAt?: string | null,
-  updatedAt?: string | null,
 };
 
 export type DeleteTodoInput = {
@@ -115,8 +109,6 @@ export type ModelTodoFilterInput = {
   page?: ModelStringInput | null,
   language?: ModelStringInput | null,
   dateAndLocation?: ModelStringInput | null,
-  createdAt?: ModelStringInput | null,
-  updatedAt?: ModelStringInput | null,
   and?: Array< ModelTodoFilterInput | null > | null,
   or?: Array< ModelTodoFilterInput | null > | null,
   not?: ModelTodoFilterInput | null,
@@ -167,8 +159,8 @@ export type CreateTodoMutation = {
     page?: string | null,
     language?: string | null,
     dateAndLocation?: string | null,
-    createdAt?: string | null,
-    updatedAt?: string | null,
+    createdAt: string,
+    updatedAt: string,
   } | null,
 };
 
@@ -189,8 +181,8 @@ export type UpdateTodoMutation = {
     page?: string | null,
     language?: string | null,
     dateAndLocation?: string | null,
-    createdAt?: string | null,
-    updatedAt?: string | null,
+    createdAt: string,
+    updatedAt: string,
   } | null,
 };
 
@@ -211,8 +203,8 @@ export type DeleteTodoMutation = {
     page?: string | null,
     language?: string | null,
     dateAndLocation?: string | null,
-    createdAt?: string | null,
-    updatedAt?: string | null,
+    createdAt: string,
+    updatedAt: string,
   } | null,
 };
 
@@ -232,8 +224,8 @@ export type GetTodoQuery = {
     page?: string | null,
     language?: string | null,
     dateAndLocation?: string | null,
-    createdAt?: string | null,
-    updatedAt?: string | null,
+    createdAt: string,
+    updatedAt: string,
   } | null,
 };
 
@@ -257,8 +249,8 @@ export type ListTodosQuery = {
       page?: string | null,
       language?: string | null,
       dateAndLocation?: string | null,
-      createdAt?: string | null,
-      updatedAt?: string | null,
+      createdAt: string,
+      updatedAt: string,
     } | null >,
     nextToken?: string | null,
   } | null,
@@ -286,8 +278,8 @@ export type PostsByEmailQuery = {
       page?: string | null,
       language?: string | null,
       dateAndLocation?: string | null,
-      createdAt?: string | null,
-      updatedAt?: string | null,
+      createdAt: string,
+      updatedAt: string,
     } | null >,
     nextToken?: string | null,
   } | null,
@@ -309,8 +301,8 @@ export type OnCreateTodoSubscription = {
     page?: string | null,
     language?: string | null,
     dateAndLocation?: string | null,
-    createdAt?: string | null,
-    updatedAt?: string | null,
+    createdAt: string,
+    updatedAt: string,
   } | null,
 };
 
@@ -330,8 +322,8 @@ export type OnUpdateTodoSubscription = {
     page?: string | null,
     language?: string | null,
     dateAndLocation?: string | null,
-    createdAt?: string | null,
-    updatedAt?: string | null,
+    createdAt: string,
+    updatedAt: string,
   } | null,
 };
 
@@ -351,7 +343,7 @@ export type OnDeleteTodoSubscription = {
     page?: string | null,
     language?: string | null,
     dateAndLocation?: string | null,
-    createdAt?: string | null,
-    updatedAt?: string | null,
+    createdAt: string,
+    updatedAt: string,
   } | null,
 };

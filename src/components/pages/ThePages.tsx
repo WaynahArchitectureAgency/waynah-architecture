@@ -50,6 +50,15 @@ const ThePages = ({choosePage, underline}: typeOfThePages) => {
         }
     }
 
+
+    if(posts) {
+        posts.sort(function(a: {createdAt: string}, b: {createdAt: string}) {
+            const num1:any = new Date(a.createdAt)
+            const num2:any = new Date(b.createdAt)
+            return num2 - num1;
+        });
+    }
+
     const showPosts = () => {
         return  posts.map((dataOfPost: PostType, index: number) => {
                     if(dataOfPost.page === choosePage && dataOfPost.language === language) {

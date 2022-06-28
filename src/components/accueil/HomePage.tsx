@@ -1,7 +1,6 @@
 import React from "react";
 import Menu from "../menu/Menu";
 
-
 const HomePage = () => {
     return(
         <div className="container">

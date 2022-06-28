@@ -2,14 +2,14 @@ import React, { useState, ChangeEvent, useRef, useEffect } from 'react'
 import { API, Auth, Storage } from 'aws-amplify';
 import { createTodo } from '../../../graphql/mutations';
 import { SimpleMdeReact } from 'react-simplemde-editor';
-import "easymde/dist/easymde.min.css";
 import { v4 as uuid } from "uuid" 
 import Menu from '../../menu/Menu';
 import "./Admin.css"
 import '../../DesignOfAllPages.css'
-import AwesomeSlider from "react-awesome-slider";
-import 'react-awesome-slider/dist/styles.css';
-import "../../DesignOfAllPages.css"
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Navigation } from "swiper";
+import "swiper/css";
+import "swiper/css/navigation";
 
 export type PostType = {
     title: string;
@@ -56,7 +56,11 @@ const CreatePost = () => {
     }, [])
 
     const createNewPost = async (newPost: PostType) => {
-        if(!newPost.title || !newPost.dateAndLocation) return;
+        if(!newPost.title || !newPost.dateAndLocation || !newPost.content) return;
+        if(newPost.page === "choose:" || newPost.language === "choose:") return;
+
+        // if(newPost.page !== "PROJECTS" || "RESEARCH" || "TEAM" || "NEWS") return;
+        // if(newPost.language !== "EN" || "RU" || "CH") return;
 
         if(image) {
             const filename = `${image.name}_${uuid()}`
@@ -80,10 +84,8 @@ const CreatePost = () => {
             // @ts-ignore
             authMode: "AMAZON_COGNITO_USER_POOLS"
         })
-        console.log("reussi")
         alert("c'est bon")
     }
-    console.log(post)
 
     const uploadImage = async () => {
         imageFileInput.current.click()
@@ -122,12 +124,13 @@ const CreatePost = () => {
             imageList.length > 1 ? (
                 <div>
                     <h1>Images:</h1>
-                    <AwesomeSlider animation="cubeAnimation" bullets={false} className="imagesOfCarouselCreateAndEdit">
+                     <Swiper navigation={true} rewind={true} modules={[Navigation]} className="theCarousel">
                         {imageList.map((image: any, index: number) => {
                             const objectUrl = URL.createObjectURL(image)
-                            return <div data-src={objectUrl} key={index}/>
+                            return <SwiperSlide><img src={objectUrl} alt='' key={index} className="swiperCarousel" /></SwiperSlide>
+
                         })}
-                    </AwesomeSlider>
+                    </Swiper>
                 </div>
             ) : <></>
         }

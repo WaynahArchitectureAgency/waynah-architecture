@@ -7,9 +7,6 @@ import "./Admin.css"
 import Menu from '../../menu/Menu'
 import PropsOfPages from '../PropsOfPages'
 import { PostType } from './CreatePost'
-import 'react-awesome-slider/dist/styles.css';
-import 'react-awesome-slider/dist/custom-animations/cube-animation.css'
-import AwesomeSlider from "react-awesome-slider";
 
 const MyPost = () => {
     const [posts, setPosts] = useState<Array<PostType> | Array<any>>([])
@@ -25,6 +22,16 @@ const MyPost = () => {
         }
         setUser()
     }, [])
+
+    useEffect(() => {
+        fetchPosts()
+    }, [postEdit])
+
+    const sortDate = posts.sort(function(a: {createdAt: string}, b: {createdAt: string}) {
+                        const num1:any = new Date(a.createdAt)
+                        const num2:any = new Date(b.createdAt)
+                        return num2 - num1;
+                    });
   
     const userConnected = async () => {
         try{
@@ -73,7 +80,6 @@ const MyPost = () => {
         }
     }
 
-
     const deletePost = async (id: string) => {
         await API.graphql({
             query: deletePostMutation,
@@ -84,28 +90,15 @@ const MyPost = () => {
         fetchPosts()
     }
 
-    console.log(posts)
-
     return ( 
         currentUser ? (
             post === null ? 
                 <div>
-                    <div className='col-6'>
-                        <AwesomeSlider animation="cubeAnimation" bullets={false} >
-                            <div data-src="https://www.referenseo.com/wp-content/uploads/2019/03/image-attractive-960x540.jpg"/>
-                            <div data-src="https://img-19.commentcamarche.net/cI8qqj-finfDcmx6jMK6Vr-krEw=/1500x/smart/b829396acc244fd484c5ddcdcb2b08f3/ccmcms-commentcamarche/20494859.jpg"/>
-                            <div data-src="https://cdn.futura-sciences.com/buildsv6/images/wide1920/6/5/2/652a7adb1b_98148_01-intro-773.jpg"/>
-                            <div data-src="https://images.ctfassets.net/hrltx12pl8hq/7yQR5uJhwEkRfjwMFJ7bUK/dc52a0913e8ff8b5c276177890eb0129/offset_comp_772626-opt.jpg?fit=fill&w=800&h=300"/>
-                            <div data-src="https://images.unsplash.com/photo-1503023345310-bd7c1de61c7d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwcm9maWxlLXBhZ2V8N3x8fGVufDB8fHx8&w=1000&q=80"/>
-                            <div data-src="https://helpx.adobe.com/content/dam/help/en/photoshop/using/convert-color-image-black-white/jcr_content/main-pars/before_and_after/image-before/Landscape-Color.jpg"/>
-                            <div data-src="https://images.lesindesradios.fr/fit-in/1500x2000/medias/S3E2PZgG71/image/icon-apple-hit-west1620074801182-format1by1.png"/>
-                        </AwesomeSlider>
-                    </div>
                     {postEdit === "" ? 
                         <div className="container text-center">
                             <Menu designOn="myPosts"/>
                             <h1 className='myPostsTitle'>My Posts</h1>
-                            {posts.map((post: PostType, index: number) => {
+                            {sortDate.map((post: PostType, index: number) => {
                                 return(
                                     <div key={index} className="myPostsEachPost">
                                         <div onClick={() => setPost(post)}>
@@ -125,7 +118,7 @@ const MyPost = () => {
                         </div>
                     }
                 </div> : 
-                <div className='container-fluid designOfCarousel'>
+                <div className='container-fluid'>
                     <h1 className='createAndUpdatePostTitle'>My Post</h1>
                     {
                         post.coverImage && post.images?.length && (

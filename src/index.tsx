@@ -12,6 +12,7 @@ import CreatePost from './components/pages/admin/CreatePost';
 import Profile from './components/pages/admin/Profile';
 import MyPost from './components/pages/admin/MyPost';
 import { Amplify } from 'aws-amplify';
+import "easymde/dist/easymde.min.css";
 
 import config from './aws-exports'
 

@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import '../DesignOfAllPages.css'
-import AwesomeSlider from "react-awesome-slider";
-import 'react-awesome-slider/dist/styles.css';
-import 'react-awesome-slider/dist/custom-animations/cube-animation.css';
 import { PostType } from "./admin/CreatePost"
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Navigation } from "swiper";
+import "swiper/css";
+import "swiper/css/navigation";
+
 
 const PropsOfPages = ({dataOfPost}: PostType | any) => {
     const [page, setPage] = useState<boolean>(false)
@@ -23,11 +25,11 @@ const PropsOfPages = ({dataOfPost}: PostType | any) => {
                         {dataOfPost.content}
                     </div>
                     <div className="col-md-6">
-                        <AwesomeSlider animation="cubeAnimation" bullets={false} className="imagesOfCarouselss">
+                         <Swiper navigation={true} rewind={true} modules={[Navigation]} className="theCarousel">
                             {dataOfPost.images.map((theImages: string, index: number) => {
-                                return <div data-src={theImages} key={index} className="imagesOfCarousel"/>
+                                return <SwiperSlide><img src={theImages} alt='' key={index} className="swiperCarousel"/></SwiperSlide>
                             })}
-                        </AwesomeSlider>
+                        </Swiper>
                     </div>
                 </div>
             )
