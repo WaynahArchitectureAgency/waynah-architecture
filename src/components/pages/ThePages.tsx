@@ -81,7 +81,7 @@ const ThePages = ({choosePage, underline}: typeOfThePages) => {
                         (
                             <h1>Loading...</h1>
                         ) : (
-                            <div>
+                            <div style={{marginBottom: 30}}>
                                 <div className="dropdown-list">
                                     <div
                                         className="dropdown-btn-list"
