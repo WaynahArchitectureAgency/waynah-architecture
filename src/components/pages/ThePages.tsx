@@ -60,17 +60,21 @@ const ThePages = ({choosePage, underline}: typeOfThePages) => {
     }
 
     const showPosts = () => {
-        return  posts.map((dataOfPost: PostType, index: number) => {
-                    if(dataOfPost.page === choosePage && dataOfPost.language === language) {
-                        return(
-                            <div key={index}>
-                                <PropsOfPages dataOfPost={dataOfPost}/>
-                            </div>
-                        )
-                    } else {
-                        return <></>
-                    }
-                })
+        if(posts?.length) {
+            return  posts.map((dataOfPost: PostType, index: number) => {
+                        if(dataOfPost.page === choosePage && dataOfPost.language === language) {
+                            return(
+                                <div key={index}>
+                                    <PropsOfPages dataOfPost={dataOfPost}/>
+                                </div>
+                            )
+                        } else {
+                            return <></>
+                        }
+                    })
+        } else {
+            return <h1>Loading...</h1>
+        } 
     }
     
     return (

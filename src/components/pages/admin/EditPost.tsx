@@ -139,7 +139,6 @@ const EditPost = ({id, setPostEdit}: {id:string, setPostEdit: any}) => {
         if(imageList.length > 1) {
             const theImages =   <Swiper navigation={true} rewind={true} modules={[Navigation]} className="theCarousel">
                                     {imageList.map((theImages: any, index: number) => {
-                                        console.log("lot of iamge")
                                         if(typeof theImages !== "string") {
                                             const objectUrl = URL.createObjectURL(theImages)
                                             return <SwiperSlide><img src={objectUrl} alt='' key={index} className="swiperCarousel" /></SwiperSlide>
@@ -150,13 +149,10 @@ const EditPost = ({id, setPostEdit}: {id:string, setPostEdit: any}) => {
             return theImages
         }
         if(imageList.length) {
-            console.log("one image")
-            console.log(imageList)
             return <img src={imageList[0]} className="covImage" alt=''/>
         }
     }
 
-    console.log(imageList)
 
   return post ? (
     <div className='container'>   
