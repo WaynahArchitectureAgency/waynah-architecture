@@ -1,21 +1,15 @@
 import React, { useState } from "react";
-import '../DesignOfAllPages.css'
-import { PostType } from "./admin/CreatePost"
+import '../StyleOfAllPages.css'
+import { PostType } from "../pages/admin/CreatePost"
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper";
 import "swiper/css";
 import "swiper/css/navigation";
 
-
-const PropsOfPages = ({dataOfPost}: PostType | any) => {
+const Post = ({dataOfPost}: any) => {
     const [page, setPage] = useState<boolean>(false)
-    const numbreImages = []
-    numbreImages.push(dataOfPost.numberOfArticle)
-    numbreImages.sort(function(a: number, b: number) {
-        return a - b; 
-      });
 
-    const articels = () => {
+    const postData = () => {
         if(dataOfPost.images.length > 1) {
             return (
                 <div className="generalRow row">
@@ -51,7 +45,7 @@ const PropsOfPages = ({dataOfPost}: PostType | any) => {
 
     return(
             page ? (
-                <div>{articels()}</div>
+                <div>{postData()}</div>
             ) : (
                 <div className="marginTop">
                     <img src={dataOfPost.coverImage} alt="" className="coverImage" onClick={() => setPage(true)}/>
@@ -60,4 +54,4 @@ const PropsOfPages = ({dataOfPost}: PostType | any) => {
         )
 }
 
-export default PropsOfPages;
+export default Post;

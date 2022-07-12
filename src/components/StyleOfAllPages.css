@@ -1,20 +1,45 @@
-@media screen and (max-width: 600px) {
-  img {
-    min-width: 400px;
-    height: 400px;
+@media screen and (max-width: 768px) {
+  .coverImage {
+    max-width: 500px !important;
+    max-height: 500px !important;
+    cursor: pointer;
+    box-shadow: 3px 3px 10px 6px rgba(0, 0, 0, 0.06);
+    opacity: 0.5;
   }
 }
 
+@media screen and (max-width: 550px) {
+  .coverImage {
+    max-width: 400px !important;
+    max-height: 400px !important;
+    cursor: pointer;
+    box-shadow: 3px 3px 10px 6px rgba(0, 0, 0, 0.06);
+    opacity: 0.5;
+  }
+}
+
+@media screen and (max-width: 991px) {
+  .sizeOfVideo {
+    margin-top: 30px;
+    width: 100% !important;
+    height: 100% !important
+  }
+}
+.sizeOfVideo {
+  width: 750px;
+  height: 500px
+}
+
 .coverImage {
-    max-width: 500px;
-    max-height: 500px;
+    max-width: 700px;
+    max-height: 700px;
     cursor: pointer;
     box-shadow: 3px 3px 10px 6px rgba(0, 0, 0, 0.06);
     opacity: 0.5;
 }
 
 .generalRow {
-    padding-top: 200px;
+    padding-top: 150px;
     margin-left: 0px !important;
     margin-right: 0px !important;
     font-family: nocturne-serif, serif;
@@ -23,7 +48,8 @@
 }
 
 .marginTop {
-    margin-top: 200px;
+    margin-top: 150px;
+    text-align: center;
 }
 
 .marginOfTitle {
@@ -37,14 +63,6 @@
 .texteLeft {
     text-align: left;
 }
-
-/* .carousel {
-    max-height: 1000px !important;
-    padding-left: 28px;
-    padding-right: 28px;
-    background-color: black;
-    color: white;
-} */
 
 .dropdown-list {
   margin-top: 50px;

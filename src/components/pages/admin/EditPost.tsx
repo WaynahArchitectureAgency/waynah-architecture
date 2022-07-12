@@ -9,7 +9,8 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper";
 import "swiper/css";
 import "swiper/css/navigation";
-import "./Admin.css"
+import "../../Admin.css"
+import "../../StyleOfAllPages.css"
 
 type PostUpdatedType = {
     id: string,
@@ -29,8 +30,8 @@ const EditPost = ({id, setPostEdit}: {id:string, setPostEdit: any}) => {
     const [imageList, setImageList] = useState<Array<any>>([])
     const fileInput = useRef<any>(null)
     const imagesFileInput = useRef<any>(null)
-    const [show, setShow] = useState<boolean>(false)
-    const [secondShow, setSecondShow] = useState<boolean>(false)
+    const [languageManu, setLanguageManu] = useState<boolean>(false)
+    const [pageMenu, setPageMenu] = useState<boolean>(false)
 
     useEffect(() => {
         const fetchPost = async () => {
@@ -64,7 +65,7 @@ const EditPost = ({id, setPostEdit}: {id:string, setPostEdit: any}) => {
         setCovImage(imageKey)
     } 
 
-    const updateImageList = async (covImages: any) => {
+    const updateImageList = async (covImages: Array<any>) => {
         const imagesKey = await Promise.all(
             covImages.map(async (image: any) => {
                 const imageURL = await Storage.get(image)
@@ -149,7 +150,7 @@ const EditPost = ({id, setPostEdit}: {id:string, setPostEdit: any}) => {
             return theImages
         }
         if(imageList.length) {
-            return <img src={imageList[0]} className="covImage" alt=''/>
+            return <img src={imageList[0]} className="oneImage" alt=''/>
         }
     }
 
@@ -158,7 +159,9 @@ const EditPost = ({id, setPostEdit}: {id:string, setPostEdit: any}) => {
     <div className='container'>   
         <h1 className='createAndUpdatePostTitle'>Edit Post</h1>
         {covImage && (
-            <img src={localImage ? localImage : covImage} className="covImage" alt="" />
+            <div className='text-center'>
+                <img src={localImage ? localImage : covImage} className="covImage" alt="" />
+            </div>
         )}
         {imageList && (
                 showImages()
@@ -168,15 +171,15 @@ const EditPost = ({id, setPostEdit}: {id:string, setPostEdit: any}) => {
                 <div
                     className="dropdown-btn-list"
                     onClick={() => {
-                        setShow(!show);
+                        setLanguageManu(!languageManu);
                     }}>
                     <button type="button" className="btn btn-secondary">{post.language}</button>
                 </div>
-                {show ? (
+                {languageManu ? (
                         <div className="dropdown-content-list">
-                            <div className="dropdown-item-list" onClick={() => {setPost({...post, language: "EN"}); setShow(!show)}}>English</div>
-                            <div className="dropdown-item-list" onClick={() => {setPost({...post, language: "RU"}); setShow(!show)}}>Russian</div>
-                            <div className="dropdown-item-list" onClick={() => {setPost({...post, language: "CH"}); setShow(!show)}}>Chechen</div>
+                            <div className="dropdown-item-list" onClick={() => {setPost({...post, language: "EN"}); setLanguageManu(!languageManu)}}>English</div>
+                            <div className="dropdown-item-list" onClick={() => {setPost({...post, language: "RU"}); setLanguageManu(!languageManu)}}>Russian</div>
+                            <div className="dropdown-item-list" onClick={() => {setPost({...post, language: "CH"}); setLanguageManu(!languageManu)}}>Chechen</div>
                         </div>
                     ) : <></>
                 }
@@ -185,16 +188,16 @@ const EditPost = ({id, setPostEdit}: {id:string, setPostEdit: any}) => {
                 <div
                     className="dropdown-btn-list"
                     onClick={() => {
-                        setSecondShow(!secondShow);
+                        setPageMenu(!pageMenu);
                     }}>
                     <button type="button" className="btn btn-secondary">{post.page}</button>
                 </div>
-                {secondShow ? (
+                {pageMenu ? (
                         <div className="dropdown-content-list">
-                            <div className="dropdown-item-list" onClick={() => {setPost({...post, page: "PROJECTS"}); setSecondShow(!secondShow)}}>Projects</div>
-                            <div className="dropdown-item-list" onClick={() => {setPost({...post, page: "RESEARCH"}); setSecondShow(!secondShow)}}>Research</div>
-                            <div className="dropdown-item-list" onClick={() => {setPost({...post, page: "TEAM"}); setSecondShow(!secondShow)}}>Team</div>
-                            <div className="dropdown-item-list" onClick={() => {setPost({...post, page: "NEWS"}); setSecondShow(!secondShow)}}>News</div>
+                            <div className="dropdown-item-list" onClick={() => {setPost({...post, page: "PROJECTS"}); setPageMenu(!pageMenu)}}>Projects</div>
+                            <div className="dropdown-item-list" onClick={() => {setPost({...post, page: "RESEARCH"}); setPageMenu(!pageMenu)}}>Research</div>
+                            <div className="dropdown-item-list" onClick={() => {setPost({...post, page: "TEAM"}); setPageMenu(!pageMenu)}}>Team</div>
+                            <div className="dropdown-item-list" onClick={() => {setPost({...post, page: "NEWS"}); setPageMenu(!pageMenu)}}>News</div>
                         </div>
                     ) : <></>
                 }
@@ -205,13 +208,16 @@ const EditPost = ({id, setPostEdit}: {id:string, setPostEdit: any}) => {
         <input value={post.dateAndLocation} name="title" placeholder='Title' 
             onChange={(event: { target: { value: string; }; }) => setPost({...post, dateAndLocation: event.target.value})}/>
         <SimpleMdeReact value={post.content} onChange={(value: string) => setPost({...post, content: value})}/>
-        <input type="file" ref={fileInput} onChange={handleChange} style={{position: "absolute", height: 0, width: 0}}/>
-        <input type="file" ref={imagesFileInput} onChange={handleChanges} style={{position: "absolute", height: 0, width: 0}}/>
+        <input type="file" ref={fileInput} onChange={handleChange} className="hideInput"/>
+        <input type="file" ref={imagesFileInput} onChange={handleChanges} className="hideInput"/>
         <div style={{marginBottom: "10px"}}>
             <button onClick={updateCurrentPost} type="button" className="btn btn-success">Update Post</button> {" "}
             <button onClick={uploadImage} type="button" className="btn btn-primary">Update Cover Image</button>{" "}
             <button onClick={uploadImages} type="button" className="btn btn-info">Update Images</button>{" "}
-            <button onClick={() => setPost({...post, images: []})} type="button" className="btn btn-danger">Clear Images</button>
+            <button onClick={() => {
+                setPost({...post, images: []})
+                setImageList([])
+            }} type="button" className="btn btn-danger">Clear Images</button>
         </div>
     </div>
   ) : <div>Loading...</div>

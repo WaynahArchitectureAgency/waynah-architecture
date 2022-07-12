@@ -3,9 +3,9 @@ import { Auth, API, Storage } from 'aws-amplify'
 import { listTodos } from '../../../graphql/queries'
 import { deleteTodo as deletePostMutation } from '../../../graphql/mutations'
 import EditPost from './EditPost'
-import "./Admin.css"
-import Menu from '../../menu/Menu'
-import PropsOfPages from '../PropsOfPages'
+import "../../Admin.css"
+import Menu from '../../elements/Menu'
+import Post from '../../elements/Post'
 import { PostType } from './CreatePost'
 
 const MyPost = () => {
@@ -27,7 +27,7 @@ const MyPost = () => {
         fetchPosts()
     }, [postEdit])
 
-    const sortDate = posts.sort(function(a: {createdAt: string}, b: {createdAt: string}) {
+    const sortPosts = posts.sort(function(a: {createdAt: string}, b: {createdAt: string}) {
                         const num1:any = new Date(a.createdAt)
                         const num2:any = new Date(b.createdAt)
                         return num2 - num1;
@@ -98,7 +98,7 @@ const MyPost = () => {
                         <div className="container text-center">
                             <Menu designOn="myPosts"/>
                             <h1 className='myPostsTitle'>My Posts</h1>
-                            {sortDate.map((post: PostType, index: number) => {
+                            {sortPosts.map((post: PostType, index: number) => {
                                 return(
                                     <div key={index} className="myPostsEachPost">
                                         <div onClick={() => setPost(post)}>
@@ -122,7 +122,7 @@ const MyPost = () => {
                     <h1 className='createAndUpdatePostTitle'>My Post</h1>
                     {
                         post.coverImage && post.images?.length && (
-                            <PropsOfPages dataOfPost={post} />
+                            <Post dataOfPost={post} />
                         )
                     }
                 </div>

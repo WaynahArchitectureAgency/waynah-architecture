@@ -1,18 +1,23 @@
 import React, { useState, useEffect } from "react";
-import './Menu.css'
+import '../Menu.css'
 import { AiOutlineHome } from 'react-icons/ai'
 import { Auth } from "aws-amplify"
 
-const Menu = ({designOn}: {designOn?: string}) => {
+type MenuType = {
+    designOn?: string;
+    adminMenu?: boolean
+}
+
+const Menu = ({designOn, adminMenu}: MenuType) => {
     const [currentUser, setCurrentUser] = useState<boolean>(false)
 
     useEffect(() => {
         const setUser = async () => {
             const userIsConnected = await userConnected()
-            setCurrentUser(userIsConnected)
+                setCurrentUser(userIsConnected)
         }
         setUser()
-    }, [])
+    }, [adminMenu])
   
     const userConnected = async () => {
         try{

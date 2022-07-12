@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import Menu from "../menu/Menu";
-import PropsOfPages from "./PropsOfPages";
+import Menu from "../elements/Menu";
+import Post from "../elements/Post";
 import { listTodos } from '../../graphql/queries'
 import { API, Storage } from 'aws-amplify'
 import { PostType } from  "./admin/CreatePost" 
@@ -12,7 +12,7 @@ type typeOfThePages = {
 
 const ThePages = ({choosePage, underline}: typeOfThePages) => {
     const [posts, setPosts] = useState<Array<PostType> | any>(null)
-    const [show, setShow] = useState<boolean>(false)
+    const [languageMenu, setLanguageMenu] = useState<boolean>(false)
     const [language, setLanguage] = useState("EN")
 
     useEffect(() => {
@@ -23,8 +23,8 @@ const ThePages = ({choosePage, underline}: typeOfThePages) => {
         const postsData = await API.graphql({ 
             query: listTodos
         }) as {data?: {listTodos?: {items?: Array<PostType>}}} 
-        setPosts(postsData?.data?.listTodos?.items)
         if(postsData?.data?.listTodos?.items) {
+            setPosts(postsData.data.listTodos.items)
             const postsCoverImage = await Promise.all(
                 postsData.data.listTodos.items.map(async (post: PostType) => {
                     try{   
@@ -65,7 +65,7 @@ const ThePages = ({choosePage, underline}: typeOfThePages) => {
                         if(dataOfPost.page === choosePage && dataOfPost.language === language) {
                             return(
                                 <div key={index}>
-                                    <PropsOfPages dataOfPost={dataOfPost}/>
+                                    <Post dataOfPost={dataOfPost}/>
                                 </div>
                             )
                         } else {
@@ -90,20 +90,20 @@ const ThePages = ({choosePage, underline}: typeOfThePages) => {
                                     <div
                                         className="dropdown-btn-list"
                                         onClick={() => {
-                                            setShow(!show);
+                                            setLanguageMenu(!languageMenu);
                                         }}>
                                         <button type="button" className="btn btn-secondary">{language}</button>
                                     </div>
-                                    {show ? (
+                                    {languageMenu ? (
                                             <div className="dropdown-content-list">
-                                                <div className="dropdown-item-list" onClick={() => {setLanguage("EN"); setShow(!show)}}>English</div>
-                                                <div className="dropdown-item-list" onClick={() => {setLanguage("RU"); setShow(!show)}}>Russian</div>
-                                                <div className="dropdown-item-list" onClick={() => {setLanguage("CH"); setShow(!show)}}>Chechen</div>
+                                                <div className="dropdown-item-list" onClick={() => {setLanguage("EN"); setLanguageMenu(!languageMenu)}}>English</div>
+                                                <div className="dropdown-item-list" onClick={() => {setLanguage("RU"); setLanguageMenu(!languageMenu)}}>Russian</div>
+                                                <div className="dropdown-item-list" onClick={() => {setLanguage("CH"); setLanguageMenu(!languageMenu)}}>Chechen</div>
                                             </div>
                                         ) : <></>
                                     }
                                 </div>
-                                {showPosts()}
+                                    {showPosts()}
                             </div>
                     )
                 }
