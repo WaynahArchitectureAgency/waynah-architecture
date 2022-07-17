@@ -1,8 +1,8 @@
 import React, {useState, useEffect, useRef} from 'react'
 import { API, Storage } from "aws-amplify"
 import SimpleMdeReact from 'react-simplemde-editor'
-import { getTodo } from '../../../graphql/queries';
-import { updateTodo } from '../../../graphql/mutations';
+import { getPost } from '../../../graphql/queries';
+import { updatePost } from '../../../graphql/mutations';
 import { PostType } from './CreatePost';
 import { v4 as uuid } from "uuid" 
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -37,7 +37,7 @@ const EditPost = ({id, setPostEdit}: {id:string, setPostEdit: any}) => {
         const fetchPost = async () => {
             if(!id) return
             const postData = await API.graphql({
-                query: getTodo,
+                query: getPost,
                 variables: { id }
             }) as {data?: {getTodo?: PostType}}
             if(postData?.data?.getTodo) {
@@ -124,7 +124,7 @@ const EditPost = ({id, setPostEdit}: {id:string, setPostEdit: any}) => {
 
         try{
             await API.graphql({
-                query: updateTodo,
+                query: updatePost,
                 variables: { input: postUpdated },
                 // @ts-ignore 
                 authMode: "AMAZON_COGNITO_USER_POOLS"

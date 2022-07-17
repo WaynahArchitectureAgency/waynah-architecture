@@ -2,13 +2,12 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
-export const onCreateTodo = /* GraphQL */ `
-  subscription OnCreateTodo($email: String) {
-    onCreateTodo(email: $email) {
+export const onCreatePost = /* GraphQL */ `
+  subscription OnCreatePost {
+    onCreatePost {
       id
       title
       content
-      email
       coverImage
       images
       page
@@ -19,13 +18,12 @@ export const onCreateTodo = /* GraphQL */ `
     }
   }
 `;
-export const onUpdateTodo = /* GraphQL */ `
-  subscription OnUpdateTodo($email: String) {
-    onUpdateTodo(email: $email) {
+export const onUpdatePost = /* GraphQL */ `
+  subscription OnUpdatePost {
+    onUpdatePost {
       id
       title
       content
-      email
       coverImage
       images
       page
@@ -36,13 +34,12 @@ export const onUpdateTodo = /* GraphQL */ `
     }
   }
 `;
-export const onDeleteTodo = /* GraphQL */ `
-  subscription OnDeleteTodo($email: String) {
-    onDeleteTodo(email: $email) {
+export const onDeletePost = /* GraphQL */ `
+  subscription OnDeletePost {
+    onDeletePost {
       id
       title
       content
-      email
       coverImage
       images
       page

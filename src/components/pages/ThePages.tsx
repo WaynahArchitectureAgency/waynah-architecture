@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Menu from "../elements/Menu";
 import Post from "../elements/Post";
-import { listTodos } from '../../graphql/queries'
+import { listPosts } from '../../graphql/queries'
 import { API, Storage } from 'aws-amplify'
 import { PostType } from  "./admin/CreatePost" 
 
@@ -11,7 +11,7 @@ type typeOfThePages = {
 }
 
 const ThePages = ({choosePage, underline}: typeOfThePages) => {
-    const [posts, setPosts] = useState<Array<PostType> | any>(null)
+    const [posts, setPosts] = useState<Array<any> | null>(null)
     const [languageMenu, setLanguageMenu] = useState<boolean>(false)
     const [language, setLanguage] = useState("EN")
 
@@ -21,12 +21,12 @@ const ThePages = ({choosePage, underline}: typeOfThePages) => {
 
     const getPosts = async () => {
         const postsData = await API.graphql({ 
-            query: listTodos
-        }) as {data?: {listTodos?: {items?: Array<PostType>}}} 
-        if(postsData?.data?.listTodos?.items) {
-            setPosts(postsData.data.listTodos.items)
+            query: listPosts
+        }) as {data?: {listPosts?: {items?: Array<PostType>}}} 
+        if(postsData?.data?.listPosts?.items) {
+            setPosts(postsData.data.listPosts.items)
             const postsCoverImage = await Promise.all(
-                postsData.data.listTodos.items.map(async (post: PostType) => {
+                postsData.data.listPosts.items.map(async (post: PostType) => {
                     try{   
                         if(post.coverImage) {
                             post.coverImage = await Storage.get(post.coverImage)

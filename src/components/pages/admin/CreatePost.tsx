@@ -1,6 +1,6 @@
 import React, { useState, ChangeEvent, useRef, useEffect } from 'react'
 import { API, Auth, Storage } from 'aws-amplify';
-import { createTodo } from '../../../graphql/mutations';
+import { createPost } from '../../../graphql/mutations';
 import { SimpleMdeReact } from 'react-simplemde-editor';
 import { v4 as uuid } from "uuid" 
 import Menu from '../../elements/Menu';
@@ -79,12 +79,12 @@ const CreatePost = () => {
         if(!newPost.images || !newPost.coverImage) return;
 
         await API.graphql({
-            query: createTodo,
+            query: createPost,
             variables: { input: newPost },
             // @ts-ignore
             authMode: "AMAZON_COGNITO_USER_POOLS"
         })
-        alert("c'est bon")
+        alert("it's ok")
     }
 
     const uploadImage = async () => {

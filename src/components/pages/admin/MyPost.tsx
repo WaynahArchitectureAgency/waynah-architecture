@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { Auth, API, Storage } from 'aws-amplify'
-import { listTodos } from '../../../graphql/queries'
-import { deleteTodo as deletePostMutation } from '../../../graphql/mutations'
+import { listPosts } from '../../../graphql/queries'
+import { deletePost as deletePostMutation } from '../../../graphql/mutations'
 import EditPost from './EditPost'
 import "../../Admin.css"
 import Menu from '../../elements/Menu'
@@ -9,7 +9,7 @@ import Post from '../../elements/Post'
 import { PostType } from './CreatePost'
 
 const MyPost = () => {
-    const [posts, setPosts] = useState<Array<PostType> | Array<any>>([])
+    const [posts, setPosts] = useState<Array<any>>([])
     const [post, setPost] = useState<PostType | null>(null)
     const [postEdit, setPostEdit] = useState<string>("")
     const [currentUser, setCurrentUser] = useState<boolean>(false)
@@ -50,13 +50,13 @@ const MyPost = () => {
     const fetchPosts = async () => {
         const { email } = await Auth.currentAuthenticatedUser()
         const postData = await API.graphql({
-            query: listTodos,
+            query: listPosts,
             variables: { email },
-        }) as {data?: {listTodos?: {items?: Array<PostType>}}}
-        if(postData?.data?.listTodos?.items) {
-            setPosts(postData.data.listTodos.items)
+        }) as {data?: {listPosts?: {items?: Array<PostType>}}}
+        if(postData?.data?.listPosts?.items) {
+            setPosts(postData.data.listPosts.items)
             const postWithImage = await Promise.all(
-                postData.data.listTodos.items.map(async (post: PostType) => {
+                postData.data.listPosts.items.map(async (post: PostType) => {
                         try{
                             if(post.coverImage) {
                                 post.coverImage = await Storage.get(post.coverImage)
@@ -80,7 +80,7 @@ const MyPost = () => {
         }
     }
 
-    const deletePost = async (id: string) => {
+    const deleteThePost = async (id: string) => {
         await API.graphql({
             query: deletePostMutation,
             variables: { input: { id } },
@@ -107,7 +107,7 @@ const MyPost = () => {
                                             <p>{post.language}</p>
                                             <p>{post.page}</p>
                                         </div>
-                                        <button onClick={() => deletePost(post.id)} type="button" className="btn btn-danger">Delete Post</button>{" "}
+                                        <button onClick={() => deleteThePost(post.id)} type="button" className="btn btn-danger">Delete Post</button>{" "}
                                         <button onClick={() => setPostEdit(post.id)} type="button" className="btn btn-warning">Edit Post</button>
                                     </div>
                                 )

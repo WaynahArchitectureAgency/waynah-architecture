@@ -6,7 +6,7 @@ import { Navigation } from "swiper";
 import "swiper/css";
 import "swiper/css/navigation";
 
-const Post = ({dataOfPost}: any) => {
+const Post = ({dataOfPost}: {dataOfPost: PostType}) => {
     const [page, setPage] = useState<boolean>(false)
 
     const postData = () => {
@@ -36,7 +36,7 @@ const Post = ({dataOfPost}: any) => {
                         <p>{dataOfPost.content}</p>
                     </div>
                     <div className="col-md-6">   
-                        <img src={dataOfPost.images} alt='' className="oneImage"/>
+                        <img src={dataOfPost.images[0]} alt='' className="oneImage"/>
                     </div>
                 </div>
             )
