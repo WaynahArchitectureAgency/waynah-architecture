@@ -26,7 +26,7 @@ type PostUpdatedType = {
 const EditPost = ({id, setPostEdit}: {id:string, setPostEdit: any}) => {
     const [post, setPost] = useState<null | PostType>(null)
     const [covImage, setCovImage] = useState<any>(null)
-    const [localImage, setLocalImage] = useState<null |string>(null)
+    const [localCoverImage, setLocalCoverImage] = useState<null |string>(null)
     const [imageList, setImageList] = useState<Array<any>>([])
     const fileInput = useRef<any>(null)
     const imagesFileInput = useRef<any>(null)
@@ -39,14 +39,14 @@ const EditPost = ({id, setPostEdit}: {id:string, setPostEdit: any}) => {
             const postData = await API.graphql({
                 query: getPost,
                 variables: { id }
-            }) as {data?: {getTodo?: PostType}}
-            if(postData?.data?.getTodo) {
-                setPost(postData.data.getTodo)
-                if(postData.data.getTodo.coverImage) {
-                    updateCoverImage(postData.data.getTodo.coverImage)
+            }) as {data?: {getPost?: PostType}}
+            if(postData?.data?.getPost) {
+                setPost(postData.data.getPost)
+                if(postData.data.getPost.coverImage) {
+                    updateCoverImage(postData.data.getPost.coverImage)
                 }
-                if(postData.data.getTodo.images) {
-                    updateImageList(postData.data.getTodo.images)
+                if(postData.data.getPost.images) {
+                    updateImageList(postData.data.getPost.images)
                 }
             }
         } 
@@ -79,7 +79,7 @@ const EditPost = ({id, setPostEdit}: {id:string, setPostEdit: any}) => {
         const fileUpload = e.target.files[0]
         if(!fileUpload) return;
         setCovImage(fileUpload)
-        setLocalImage(URL.createObjectURL(fileUpload))
+        setLocalCoverImage(URL.createObjectURL(fileUpload))
     }
 
     const handleChanges = (e: any) => {
@@ -102,13 +102,13 @@ const EditPost = ({id, setPostEdit}: {id:string, setPostEdit: any}) => {
             dateAndLocation
         }
 
-        if(covImage && localImage) {
+        if(covImage && localCoverImage) {
             const fileName = `${covImage.name}_${uuid()}`
             postUpdated.coverImage = fileName
             await Storage.put(fileName, covImage)
         }
         
-        if(!covImage || !localImage) {
+        if(!covImage || !localCoverImage) {
             delete postUpdated.coverImage
         }
 
@@ -138,29 +138,38 @@ const EditPost = ({id, setPostEdit}: {id:string, setPostEdit: any}) => {
     const showImages = () => {
         if(!imageList) return <></>
         if(imageList.length > 1) {
-            const theImages =   <Swiper navigation={true} rewind={true} modules={[Navigation]} className="theCarousel">
-                                    {imageList.map((theImages: any, index: number) => {
-                                        if(typeof theImages !== "string") {
-                                            const objectUrl = URL.createObjectURL(theImages)
-                                            return <SwiperSlide><img src={objectUrl} alt='' key={index} className="swiperCarousel" /></SwiperSlide>
-                                        } 
-                                        return <SwiperSlide><img src={theImages} alt='' key={index} className="swiperCarousel" /></SwiperSlide>
-                                    })}
-                                </Swiper>
+            const theImages =   
+            <div className='text-center'>
+                <h1>Images</h1>
+                <Swiper navigation={true} rewind={true} modules={[Navigation]} className="theCarousel">
+                    {imageList.map((theImages: any, index: number) => {
+                        if(typeof theImages !== "string") {
+                            const objectUrl = URL.createObjectURL(theImages)
+                            return <SwiperSlide><img src={objectUrl} alt='' key={index} className="swiperCarousel" /></SwiperSlide>
+                        } 
+                        return <SwiperSlide><img src={theImages} alt='' key={index} className="swiperCarousel" /></SwiperSlide>
+                    })}
+                </Swiper>
+            </div>
             return theImages
         }
         if(imageList.length) {
-            return <img src={imageList[0]} className="oneImage" alt=''/>
+            return (
+                <div className="text-center">
+                    <h1>Image</h1>
+                    <img src={imageList[0]} className="oneImage" alt=''/>
+                </div>
+            )
         }
     }
-
-
+      
   return post ? (
     <div className='container'>   
         <h1 className='createAndUpdatePostTitle'>Edit Post</h1>
         {covImage && (
             <div className='text-center'>
-                <img src={localImage ? localImage : covImage} className="covImage" alt="" />
+                <h1>Cover Image</h1>
+                <img src={localCoverImage ? localCoverImage : covImage} className="covImage" alt="" />
             </div>
         )}
         {imageList && (
@@ -213,7 +222,7 @@ const EditPost = ({id, setPostEdit}: {id:string, setPostEdit: any}) => {
         <div style={{marginBottom: "10px"}}>
             <button onClick={updateCurrentPost} type="button" className="btn btn-success">Update Post</button> {" "}
             <button onClick={uploadImage} type="button" className="btn btn-primary">Update Cover Image</button>{" "}
-            <button onClick={uploadImages} type="button" className="btn btn-info">Update Images</button>{" "}
+            <button onClick={uploadImages} type="button" className="btn btn-info">Add Image</button>{" "}
             <button onClick={() => {
                 setPost({...post, images: []})
                 setImageList([])
@@ -224,3 +233,4 @@ const EditPost = ({id, setPostEdit}: {id:string, setPostEdit: any}) => {
 }
 
 export default EditPost;
+
