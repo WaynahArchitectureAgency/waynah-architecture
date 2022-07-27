@@ -100,7 +100,7 @@ const MyPost = () => {
                             <h1 className='myPostsTitle'>My Posts</h1>
                             {sortPosts.map((post: PostType, index: number) => {
                                 return(
-                                    <div key={index} className="myPostsEachPost">
+                                    <div key={`index ${index}`} className="myPostsEachPost">
                                         <div onClick={() => setPost(post)}>
                                             <h1>{post.title}</h1>
                                             <p>{post.dateAndLocation}</p>

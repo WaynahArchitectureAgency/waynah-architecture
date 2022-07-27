@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import '../Menu.css'
-import { AiOutlineHome } from 'react-icons/ai'
 import { Auth } from "aws-amplify"
 
 type MenuType = {
@@ -36,7 +35,6 @@ const Menu = ({designOn, adminMenu}: MenuType) => {
     return currentUser ? (
         <div className="row menuGeneral">
             <div className="col-12 menu">
-                <a href="/" className="textBlack"><AiOutlineHome className="homeIcon"/></a>
                 <a href='/project' className={designOn === 'projects' ? ('textBlackWithDecoration') : ('textBlack')}>Projects</a>
                 <a href='/research'className={designOn === 'research' ? ('textBlackWithDecoration') : ('textBlack')}>Research</a>
                 <a href='/team' className={designOn === 'team' ? ('textBlackWithDecoration') : ('textBlack')}>Team</a>
@@ -49,7 +47,6 @@ const Menu = ({designOn, adminMenu}: MenuType) => {
     ) :(
         <div className="row menuGeneral">
             <div className="col-12 menu">
-                <a href="/" className="textBlack"><AiOutlineHome className="homeIcon"/></a>
                 <a href='/project' className={designOn === 'projects' ? ('textBlackWithDecoration') : ('textBlack')}>Projects</a>
                 <a href='/research'className={designOn === 'research' ? ('textBlackWithDecoration') : ('textBlack')}>Research</a>
                 <a href='/team' className={designOn === 'team' ? ('textBlackWithDecoration') : ('textBlack')}>Team</a>

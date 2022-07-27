@@ -10,6 +10,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper";
 import "swiper/css";
 import "swiper/css/navigation";
+import imageCompression from "browser-image-compression"
 
 export type PostType = {
     title: string;
@@ -95,18 +96,31 @@ const CreatePost = () => {
         imagesFileInput.current.click()
     }
 
+
+    const options = {
+        maxSizeMb : 1,
+        maxWidthOrHeight: 700,
+        useWebWorker: true
+    }
+
+
     const handleChange = (e: any) => {
         const fileUploaded = e.target.files[0]
         if(!fileUploaded) return
-        setImage(fileUploaded)
+
+        imageCompression(fileUploaded, options).then(x =>{
+            setImage(x)
+        })
     }
 
     const handlesChange = (e: any) => {
         const filesUploaded = e.target.files[0]
         if(!filesUploaded) return
-        setImageList([...imageList,filesUploaded])
-    }
 
+        imageCompression(filesUploaded, options).then(x =>{
+            setImageList([...imageList,x])
+        })
+    }
 
   return currentUser ? (
     <div className="container text-center">
@@ -127,7 +141,7 @@ const CreatePost = () => {
                      <Swiper navigation={true} rewind={true} modules={[Navigation]} className="theCarousel">
                         {imageList.map((image: any, index: number) => {
                             const objectUrl = URL.createObjectURL(image)
-                            return <SwiperSlide><img src={objectUrl} alt='' key={index} className="swiperCarousel" /></SwiperSlide>
+                            return <SwiperSlide><img src={objectUrl} alt='' key={`index ${index}`} className="swiperCarousel" /></SwiperSlide>
 
                         })}
                     </Swiper>
@@ -156,7 +170,7 @@ const CreatePost = () => {
                             <div className="dropdown-content-list">
                                 <div className="dropdown-item-list" onClick={() => {setPost({...post, language: "EN"}); setLanguageManu(!languageManu)}}>English</div>
                                 <div className="dropdown-item-list" onClick={() => {setPost({...post, language: "RU"}); setLanguageManu(!languageManu)}}>Russian</div>
-                                <div className="dropdown-item-list" onClick={() => {setPost({...post, language: "CH"}); setLanguageManu(!languageManu)}}>Chechen</div>
+                                <div className="dropdown-item-list" onClick={() => {setPost({...post, language: "TC"}); setLanguageManu(!languageManu)}}>Tchetchene</div>
                             </div>
                         ) : <></>
                     }

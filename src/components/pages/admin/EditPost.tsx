@@ -145,9 +145,9 @@ const EditPost = ({id, setPostEdit}: {id:string, setPostEdit: any}) => {
                     {imageList.map((theImages: any, index: number) => {
                         if(typeof theImages !== "string") {
                             const objectUrl = URL.createObjectURL(theImages)
-                            return <SwiperSlide><img src={objectUrl} alt='' key={index} className="swiperCarousel" /></SwiperSlide>
+                            return <SwiperSlide><img src={objectUrl} alt='' key={`index ${index}`} className="swiperCarousel" /></SwiperSlide>
                         } 
-                        return <SwiperSlide><img src={theImages} alt='' key={index} className="swiperCarousel" /></SwiperSlide>
+                        return <SwiperSlide><img src={theImages} alt='' key={`index ${index}`} className="swiperCarousel" /></SwiperSlide>
                     })}
                 </Swiper>
             </div>
@@ -162,7 +162,7 @@ const EditPost = ({id, setPostEdit}: {id:string, setPostEdit: any}) => {
             )
         }
     }
-      
+
   return post ? (
     <div className='container'>   
         <h1 className='createAndUpdatePostTitle'>Edit Post</h1>
@@ -188,7 +188,7 @@ const EditPost = ({id, setPostEdit}: {id:string, setPostEdit: any}) => {
                         <div className="dropdown-content-list">
                             <div className="dropdown-item-list" onClick={() => {setPost({...post, language: "EN"}); setLanguageManu(!languageManu)}}>English</div>
                             <div className="dropdown-item-list" onClick={() => {setPost({...post, language: "RU"}); setLanguageManu(!languageManu)}}>Russian</div>
-                            <div className="dropdown-item-list" onClick={() => {setPost({...post, language: "CH"}); setLanguageManu(!languageManu)}}>Chechen</div>
+                            <div className="dropdown-item-list" onClick={() => {setPost({...post, language: "TC"}); setLanguageManu(!languageManu)}}>Tchetchene</div>
                         </div>
                     ) : <></>
                 }

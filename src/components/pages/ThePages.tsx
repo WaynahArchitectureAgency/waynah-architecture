@@ -4,6 +4,10 @@ import Post from "../elements/Post";
 import { listPosts } from '../../graphql/queries'
 import { API, Storage } from 'aws-amplify'
 import { PostType } from  "./admin/CreatePost" 
+import "../StyleOfAllPages.css"
+import { BsInstagram } from 'react-icons/bs'
+import { BsLinkedin } from 'react-icons/bs'
+import { GrMailOption } from 'react-icons/gr'
 
 type typeOfThePages = {
     choosePage: string,
@@ -14,6 +18,7 @@ const ThePages = ({choosePage, underline}: typeOfThePages) => {
     const [posts, setPosts] = useState<Array<any> | null>(null)
     const [languageMenu, setLanguageMenu] = useState<boolean>(false)
     const [language, setLanguage] = useState("EN")
+    const [underlineMenu, setUnderlineMenu] = useState({EN: true, RU: false, TC: false})
 
     useEffect(() => {
         getPosts()
@@ -64,7 +69,7 @@ const ThePages = ({choosePage, underline}: typeOfThePages) => {
             return  posts.map((dataOfPost: PostType, index: number) => {
                         if(dataOfPost.page === choosePage && dataOfPost.language === language) {
                             return(
-                                <div key={index}>
+                                <div key={`index ${index}`}>
                                     <Post dataOfPost={dataOfPost}/>
                                 </div>
                             )
@@ -85,25 +90,20 @@ const ThePages = ({choosePage, underline}: typeOfThePages) => {
                         (
                             <h1>Loading...</h1>
                         ) : (
-                            <div style={{marginBottom: 30}}>
-                                <div className="dropdown-list">
-                                    <div
-                                        className="dropdown-btn-list"
-                                        onClick={() => {
-                                            setLanguageMenu(!languageMenu);
-                                        }}>
-                                        <button type="button" className="btn btn-secondary">{language}</button>
-                                    </div>
-                                    {languageMenu ? (
-                                            <div className="dropdown-content-list">
-                                                <div className="dropdown-item-list" onClick={() => {setLanguage("EN"); setLanguageMenu(!languageMenu)}}>English</div>
-                                                <div className="dropdown-item-list" onClick={() => {setLanguage("RU"); setLanguageMenu(!languageMenu)}}>Russian</div>
-                                                <div className="dropdown-item-list" onClick={() => {setLanguage("CH"); setLanguageMenu(!languageMenu)}}>Chechen</div>
-                                            </div>
-                                        ) : <></>
-                                    }
-                                </div>
+                            <div className="marginTopNone">
+                                <div className="generalDimentionOfPosts">
                                     {showPosts()}
+                                </div>
+                                <div className="menuLanguage">
+                                    <p className={underlineMenu.EN ? "menuLanguageMarginTrue" : "menuLanguageMarginFalse"} onClick={() => {setLanguage("EN"); setLanguageMenu(!languageMenu);  setUnderlineMenu({EN: true, RU: false, TC: false})}}>En</p>
+                                    <p className={underlineMenu.RU ? "menuLanguageMarginTrue" : "menuLanguageMarginFalse"} onClick={() => {setLanguage("RU"); setLanguageMenu(!languageMenu);  setUnderlineMenu({EN: false, RU: true, TC: false})}}>Ru</p>
+                                    <p className={underlineMenu.TC ? "menuLanguageMarginTrue" : "menuLanguageMarginFalse"} onClick={() => {setLanguage("TC"); setLanguageMenu(!languageMenu);  setUnderlineMenu({EN: false, RU: false, TC: true})}}>Tc</p>
+                                </div>
+                                <div className="generalSocialNetworks">
+                                    <a href=""><BsLinkedin size="17px" /></a>
+                                    <a style={{color: "black", marginLeft: "10px", marginRight: "10px"}} href=""><BsInstagram size="17px" /></a>
+                                    <a  href=""><GrMailOption size="17px" /></a>
+                                </div>
                             </div>
                     )
                 }
