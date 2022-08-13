@@ -96,13 +96,11 @@ const CreatePost = () => {
         imagesFileInput.current.click()
     }
 
-
     const options = {
         maxSizeMb : 1,
         maxWidthOrHeight: 700,
         useWebWorker: true
     }
-
 
     const handleChange = (e: any) => {
         const fileUploaded = e.target.files[0]

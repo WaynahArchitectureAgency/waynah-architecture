@@ -102,7 +102,7 @@
 }
 
 .oneImage {
-  max-width: 600px;
+  width: 600px;
   max-height: 600px;
 }
 
@@ -116,15 +116,15 @@
 
 @media screen and (max-width: 1200px) {
   .oneImage {
-    max-width: 450px !important;
-    max-height: 450px !important;
+    max-width: 444px !important;
+    max-height: 444px !important;
   }
 }
 
 @media screen and (max-width: 991px) {
   .oneImage {
-    max-width: 340px !important;
-    max-height: 340px !important;
+    max-width: 324px !important;
+    max-height: 324px !important;
   }
 }
 
@@ -146,20 +146,17 @@
   justify-content: center;
 }
 
-.menuLanguageMarginTrue {
+.menuLanguageUnderlineTrue {
   margin-left: 10px;
   margin-right: 10px;
   cursor: pointer;
   text-decoration: underline;
 }
-.menuLanguageMarginFalse {
+
+.menuLanguageUnderlineFalse {
   margin-left: 10px;
   margin-right: 10px;
   cursor: pointer;
-}
-
-.marginTopNone {
-  padding: none !important;
 }
 
 .generalDimentionOfPosts {
@@ -168,6 +165,5 @@
 
 .generalSocialNetworks {
   display: flex;
-  justify-content: end;
-  margin-bottom: 10px;
 }
+

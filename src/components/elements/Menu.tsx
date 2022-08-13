@@ -27,7 +27,6 @@ const Menu = ({designOn, adminMenu}: MenuType) => {
                 return false
             }
         } catch(error) {
-            console.error(error)
             return false
         }
     }

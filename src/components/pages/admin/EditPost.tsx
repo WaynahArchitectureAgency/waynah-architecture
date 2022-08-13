@@ -11,6 +11,7 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "../../Admin.css"
 import "../../StyleOfAllPages.css"
+import imageCompression from "browser-image-compression"
 
 type PostUpdatedType = {
     id: string,
@@ -75,17 +76,28 @@ const EditPost = ({id, setPostEdit}: {id:string, setPostEdit: any}) => {
         setImageList(imagesKey)
     } 
 
+    const options = {
+        maxSizeMb : 1,
+        maxWidthOrHeight: 700,
+        useWebWorker: true
+    }
+
     const handleChange = (e: any) => {
         const fileUpload = e.target.files[0]
         if(!fileUpload) return;
-        setCovImage(fileUpload)
-        setLocalCoverImage(URL.createObjectURL(fileUpload))
+        imageCompression(fileUpload, options).then(x =>{
+            setCovImage(x)
+            setLocalCoverImage(URL.createObjectURL(x))
+        })
     }
 
     const handleChanges = (e: any) => {
         const fileUpload = e.target.files[0]
         if(!fileUpload) return;
-        setImageList([...imageList, fileUpload])
+        imageCompression(fileUpload, options).then(x =>{
+            setImageList([...imageList, x])
+
+        })
     }
 
     const updateCurrentPost = async () => {

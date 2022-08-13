@@ -90,19 +90,21 @@ const ThePages = ({choosePage, underline}: typeOfThePages) => {
                         (
                             <h1>Loading...</h1>
                         ) : (
-                            <div className="marginTopNone">
+                            <div>
                                 <div className="generalDimentionOfPosts">
                                     {showPosts()}
                                 </div>
-                                <div className="menuLanguage">
-                                    <p className={underlineMenu.EN ? "menuLanguageMarginTrue" : "menuLanguageMarginFalse"} onClick={() => {setLanguage("EN"); setLanguageMenu(!languageMenu);  setUnderlineMenu({EN: true, RU: false, TC: false})}}>En</p>
-                                    <p className={underlineMenu.RU ? "menuLanguageMarginTrue" : "menuLanguageMarginFalse"} onClick={() => {setLanguage("RU"); setLanguageMenu(!languageMenu);  setUnderlineMenu({EN: false, RU: true, TC: false})}}>Ru</p>
-                                    <p className={underlineMenu.TC ? "menuLanguageMarginTrue" : "menuLanguageMarginFalse"} onClick={() => {setLanguage("TC"); setLanguageMenu(!languageMenu);  setUnderlineMenu({EN: false, RU: false, TC: true})}}>Tc</p>
-                                </div>
-                                <div className="generalSocialNetworks">
-                                    <a href=""><BsLinkedin size="17px" /></a>
-                                    <a style={{color: "black", marginLeft: "10px", marginRight: "10px"}} href=""><BsInstagram size="17px" /></a>
-                                    <a  href=""><GrMailOption size="17px" /></a>
+                                <div className="row">
+                                    <div className="offset-2 col-8 menuLanguage">
+                                        <p className={underlineMenu.EN ? "menuLanguageUnderlineTrue" : "menuLanguageUnderlineFalse"} onClick={() => {setLanguage("EN"); setLanguageMenu(!languageMenu);  setUnderlineMenu({EN: true, RU: false, TC: false})}}>En</p>
+                                        <p className={underlineMenu.RU ? "menuLanguageUnderlineTrue" : "menuLanguageUnderlineFalse"} onClick={() => {setLanguage("RU"); setLanguageMenu(!languageMenu);  setUnderlineMenu({EN: false, RU: true, TC: false})}}>Ru</p>
+                                        <p className={underlineMenu.TC ? "menuLanguageUnderlineTrue" : "menuLanguageUnderlineFalse"} onClick={() => {setLanguage("TC"); setLanguageMenu(!languageMenu);  setUnderlineMenu({EN: false, RU: false, TC: true})}}>Tc</p>
+                                    </div>
+                                    <div className="col-1 generalSocialNetworks">
+                                        <a href="https://www.linkedin.com/groups/13858939/"><BsLinkedin size="17px" /></a>
+                                        <a style={{color: "black", marginLeft: "10px", marginRight: "10px"}} href="https://www.instagram.com/waa.eu/?hl=en"><BsInstagram size="17px" /></a>
+                                        <a href=""><GrMailOption size="17px" /></a>
+                                    </div>
                                 </div>
                             </div>
                     )
