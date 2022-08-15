@@ -32,7 +32,6 @@ const ThePages = ({choosePage, underline}: typeOfThePages) => {
             setPosts(postsData.data.listPosts.items)
             const postsCoverImage = await Promise.all(
                 postsData.data.listPosts.items.map(async (post: PostType) => {
-                    try{   
                         if(post.coverImage) {
                             post.coverImage = await Storage.get(post.coverImage)
                         }
@@ -46,9 +45,6 @@ const ThePages = ({choosePage, underline}: typeOfThePages) => {
                             post.images = postWithImages
                         }
                         return post
-                    } catch(error) {
-                        console.error(error)
-                    }
                 })
             )
             setPosts(postsCoverImage)
