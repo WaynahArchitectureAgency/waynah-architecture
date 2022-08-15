@@ -150,7 +150,7 @@ const CreatePost = () => {
             imageList.length < 2 && imageList.length > 0 ? (
                 <div>
                     <h1>Image:</h1>
-                    <img src={URL.createObjectURL(imageList[0])} alt='' className='oneImage'/>
+                    <img src={URL.createObjectURL(imageList[0])} alt='' className='showOneImage'/>
                 </div>
             ) : <></>
         }
@@ -219,7 +219,11 @@ const CreatePost = () => {
             </button> {" "}
             <button type="button" onClick={uploadImages} className="btn btn-primary">
                 Add Image
-            </button>
+            </button>{" "}
+            <button onClick={() => {
+                setPost({...post, images: []})
+                setImageList([])
+            }} type="button" className="btn btn-danger">Clear Images</button>
         </div>
     </div>
   ) : <div><h1>You do not have access to this page</h1></div>

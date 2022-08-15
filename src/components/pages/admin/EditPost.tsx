@@ -169,17 +169,17 @@ const EditPost = ({id, setPostEdit}: {id:string, setPostEdit: any}) => {
             return (
                 <div className="text-center">
                     <h1>Image</h1>
-                    <img src={imageList[0]} className="oneImage" alt=''/>
+                    <img src={imageList[0]} className="showOneImage" alt=''/>
                 </div>
             )
         }
     }
 
   return post ? (
-    <div className='container'>   
+    <div className='container text-center'>   
         <h1 className='createAndUpdatePostTitle'>Edit Post</h1>
         {covImage && (
-            <div className='text-center'>
+            <div>
                 <h1>Cover Image</h1>
                 <img src={localCoverImage ? localCoverImage : covImage} className="covImage" alt="" />
             </div>

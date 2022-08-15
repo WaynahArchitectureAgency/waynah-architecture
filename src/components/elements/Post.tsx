@@ -21,7 +21,7 @@ const Post = ({dataOfPost}: {dataOfPost: PostType}) => {
                     <div className="col-md-6">
                          <Swiper navigation={true} rewind={true} modules={[Navigation]} className="theCarousel">
                             {dataOfPost.images.map((theImages: string, index: number) => {
-                                return <SwiperSlide><img referrerPolicy="no-referrer" src={theImages} alt='' key={`index ${index}`} className="swiperCarousel"/></SwiperSlide>
+                                return <SwiperSlide><img src={theImages} alt='' key={`index ${index}`} className="swiperCarousel"/></SwiperSlide>
                             })}
                         </Swiper>
                     </div>

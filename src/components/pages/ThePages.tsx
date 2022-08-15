@@ -7,7 +7,7 @@ import { PostType } from  "./admin/CreatePost"
 import "../StyleOfAllPages.css"
 import { BsInstagram } from 'react-icons/bs'
 import { BsLinkedin } from 'react-icons/bs'
-import { GrMailOption } from 'react-icons/gr'
+// import { GrMailOption } from 'react-icons/gr'
 
 type typeOfThePages = {
     choosePage: string,
@@ -103,7 +103,7 @@ const ThePages = ({choosePage, underline}: typeOfThePages) => {
                                     <div className="col-1 generalSocialNetworks">
                                         <a href="https://www.linkedin.com/groups/13858939/"><BsLinkedin size="17px" /></a>
                                         <a style={{color: "black", marginLeft: "10px", marginRight: "10px"}} href="https://www.instagram.com/waa.eu/?hl=en"><BsInstagram size="17px" /></a>
-                                        <a href=""><GrMailOption size="17px" /></a>
+                                        {/* <a href=""><GrMailOption size="17px" /></a> */}
                                     </div>
                                 </div>
                             </div>

@@ -118,7 +118,7 @@ const MyPost = () => {
                         </div>
                     }
                 </div> : 
-                <div className='container-fluid'>
+                <div className='container-fluid text-center'>
                     <h1 className='createAndUpdatePostTitle'>My Post</h1>
                     {
                         post.coverImage && post.images?.length && (
