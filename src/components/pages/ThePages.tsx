@@ -7,7 +7,7 @@ import { PostType } from './admin/CreatePost';
 import '../StyleOfAllPages.css';
 import { BsInstagram } from 'react-icons/bs';
 import { BsLinkedin } from 'react-icons/bs';
-// import { GrMailOption } from 'react-icons/gr'
+import { GrMailOption } from 'react-icons/gr';
 
 type typeOfThePages = {
   choosePage: string;
@@ -134,11 +134,10 @@ const ThePages = ({ choosePage, underline }: typeOfThePages) => {
                 href="https://www.instagram.com/waa.eu/?hl=en">
                 <BsInstagram size="19px" />
               </a>
-              {/* 
-              To be reactivated later before we need 
-              <a href=""><GrMailOption size="17px" /></a>
-              
-              */}
+
+              <a href="mailto:waa.eur@gmail.com">
+                <GrMailOption size="19px" />
+              </a>
             </div>
           </div>
         </div>
