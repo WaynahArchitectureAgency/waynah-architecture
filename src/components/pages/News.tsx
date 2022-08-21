@@ -1,8 +1,8 @@
-import React from 'react'
-import ThePages from './ThePages'
+import React from 'react';
+import ThePages from './ThePages';
 
 const News = () => {
-    return <ThePages choosePage='NEWS' underline='news'/>
-}
+  return <ThePages choosePage="NEWS" underline="news" />;
+};
 
-export default News
+export default News;

@@ -22,7 +22,7 @@
   .sizeOfVideo {
     margin-top: 30px;
     width: 100% !important;
-    height: 100% !important
+    height: 100% !important;
   }
 
   .coverImage {
@@ -35,40 +35,40 @@
 }
 .sizeOfVideo {
   width: 750px;
-  height: 500px
+  height: 500px;
 }
 
 .coverImage {
-    max-width: 700px;
-    max-height: 700px;
-    cursor: pointer;
-    box-shadow: 3px 3px 10px 6px rgba(0, 0, 0, 0.06);
-    opacity: 0.5;
+  max-width: 700px;
+  max-height: 700px;
+  cursor: pointer;
+  box-shadow: 3px 3px 10px 6px rgba(0, 0, 0, 0.06);
+  opacity: 0.5;
 }
 
 .generalRow {
-    padding-bottom: 100px;
-    margin-left: 0px !important;
-    margin-right: 0px !important;
-    font-family: nocturne-serif, serif;
-    font-style: normal;
-    font-weight: 400;
+  padding-bottom: 100px;
+  margin-left: 0px !important;
+  margin-right: 0px !important;
+  font-family: nocturne-serif, serif;
+  font-style: normal;
+  font-weight: 400;
 }
 
 .marginTop {
-    margin-bottom: 100px;
+  margin-bottom: 100px;
 }
 
 .marginOfTitle {
-    margin-bottom: 30px;
+  margin-bottom: 30px;
 }
 
 .coverImage:hover {
-    opacity: 1;
-} 
+  opacity: 1;
+}
 
 .texteLeft {
-    text-align: left;
+  text-align: left;
 }
 
 .dropdown-list {
@@ -105,7 +105,6 @@
   width: 600px;
   max-height: 600px;
 }
-
 
 @media screen and (max-width: 1200px) {
   .oneImage {
@@ -188,4 +187,3 @@
 .generalSocialNetworks {
   display: flex;
 }
-

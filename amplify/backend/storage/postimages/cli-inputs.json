@@ -3,14 +3,8 @@
   "policyUUID": "10e8c223",
   "bucketName": "waynaharchitecturefc7a9a905b284f38a410a60f4dc36",
   "storageAccess": "authAndGuest",
-  "guestAccess": [
-    "READ"
-  ],
-  "authAccess": [
-    "CREATE_AND_UPDATE",
-    "READ",
-    "DELETE"
-  ],
+  "guestAccess": ["READ"],
+  "authAccess": ["CREATE_AND_UPDATE", "READ", "DELETE"],
   "triggerFunction": "NONE",
   "groupAccess": {}
 }
