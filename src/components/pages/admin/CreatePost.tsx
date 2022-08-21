@@ -60,9 +60,6 @@ const CreatePost = () => {
         if(!newPost.title || !newPost.dateAndLocation || !newPost.content) return;
         if(newPost.page === "page:" || newPost.language === "language:") return;
 
-        // if(newPost.page !== "PROJECTS" || "RESEARCH" || "TEAM" || "NEWS") return;
-        // if(newPost.language !== "EN" || "RU" || "CH") return;
-
         if(image) {
             const filename = `${image.name}_${uuid()}`
             newPost.coverImage = filename
