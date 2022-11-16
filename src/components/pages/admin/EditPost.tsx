@@ -156,8 +156,8 @@ const EditPost = ({ id, setPostEdit }: { id: string; setPostEdit: any }) => {
               if (typeof theImages !== 'string') {
                 const objectUrl = URL.createObjectURL(theImages);
                 return (
-                  <SwiperSlide>
-                    <img src={objectUrl} alt="" key={`index ${index}`} className="swiperCarousel" />
+                  <SwiperSlide key={`index ${index}`}>
+                    <img src={objectUrl} alt="" className="swiperCarousel" />
                   </SwiperSlide>
                 );
               }
