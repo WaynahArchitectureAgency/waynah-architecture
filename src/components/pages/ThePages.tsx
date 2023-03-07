@@ -18,6 +18,7 @@ const ThePages = ({ choosePage, underline }: typeOfThePages) => {
   const [posts, setPosts] = useState<Array<any> | null>(null);
   const [languageMenu, setLanguageMenu] = useState<boolean>(false);
   const [language, setLanguage] = useState('EN');
+
   const [underlineMenu, setUnderlineMenu] = useState({ EN: true, RU: false, TC: false });
 
   useEffect(() => {

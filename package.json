@@ -16,7 +16,7 @@
     "browser-image-compression": "^2.0.0",
     "easymde": "^2.16.1",
     "graphql": "^16.5.0",
-    "react": "^18.2.0",
+    "react": "^16.8.0",
     "react-bootstrap": "^2.2.0",
     "react-dom": "^16.14.0",
     "react-flickity-component": "^3.6.2",
